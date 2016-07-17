@@ -31,3 +31,6 @@
 ;; バックスペース
 (keyboard-translate ?\C-h ?\C-?)
 
+
+;; Javascript
+(setq js-indent-level 2)

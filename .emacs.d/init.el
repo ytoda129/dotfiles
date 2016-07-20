@@ -31,6 +31,21 @@
 ;; バックスペース
 (keyboard-translate ?\C-h ?\C-?)
 
+;; package関係
+(require 'package)
 
-;; Javascript
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+
+(package-initialize)
+(package-refresh-contents)
+
+;; 追加したパッケージ
+(package-install 'js2-mode)
+
+;; javascript-mode
 (setq js-indent-level 2)
+
+;; js2-mode
+(autoload 'js2-mode "js2-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(setq js2-basic-offset 2)

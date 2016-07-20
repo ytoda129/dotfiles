@@ -33,14 +33,28 @@
 
 ;; package関係
 (require 'package)
-
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 (package-initialize)
-(package-refresh-contents)
+;(package-refresh-contents)
 
-;; 追加したパッケージ
-(package-install 'js2-mode)
+;; 追加したパッケージ (多分、24.5じゃないと毎回installされる
+;(package-install 'js2-mode)
+
+(require 'cl)
+(defvar installing-package-list
+  '(
+    ;; ここに使っているパッケージを書く。
+    js2-mode
+    ))
+
+(let ((not-installed (loop for x in installing-package-list
+                           when (not (package-installed-p x))
+                           collect x)))
+  (when not-installed
+    (package-refresh-contents)
+    (dolist (pkg not-installed)
+      (package-install pkg))))
 
 ;; javascript-mode
 (setq js-indent-level 2)

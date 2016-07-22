@@ -1,6 +1,9 @@
 ;; ロードパスの追加
 (setq load-path (append
-		 '("~/.emacs.d/packages")
+                 '(
+                   "~/.emacs.d/packages"
+                   "~/.emacs.d/private-conf"
+                   )
 		 load-path))
 
 ;; 言語設定
@@ -32,11 +35,8 @@
 (keyboard-translate ?\C-h ?\C-?)
 
 ;; proxy
-;; (setq url-proxy-services
-;;       '(("http" . "host:port")
-;;         ("https" . "host:port")))
-;; (setq url-http-proxy-basic-auth-storage
-;;       '(("host:port" ("Proxy" . "base64"))))
+;; private-conf/myproxy.elがあるときだけプロキシ設定をロード
+(load "myproxy" t)
 
 ;; package関係
 (require 'package)

@@ -1,4 +1,6 @@
 *~
 
+# for Emacs
 /.emacs.d/elpa/
 /.emacs.d/private-conf/
+/.emacs.d/session*

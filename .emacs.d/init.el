@@ -40,13 +40,14 @@
 
 ;; package関係
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
 (package-initialize)
 ;(package-refresh-contents)
 
 ;; 追加したパッケージ (多分、24.5じゃないと毎回installされる
 (package-install 'js2-mode)
+(package-install 'helm)
 
 ;; javascript-mode
 (setq js-indent-level 2)
@@ -56,3 +57,6 @@
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (setq js2-basic-offset 2)
 
+;; helm
+(require 'helm-config)
+(helm-mode 1)

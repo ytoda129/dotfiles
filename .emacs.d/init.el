@@ -43,7 +43,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
 (package-initialize)
-;(package-refresh-contents)
+(package-refresh-contents)
 
 ;; 追加したパッケージ (多分、24.5じゃないと毎回installされる
 (package-install 'js2-mode)

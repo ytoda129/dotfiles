@@ -48,6 +48,8 @@
 ;; 追加したパッケージ (多分、24.5じゃないと毎回installされる
 (package-install 'js2-mode)
 (package-install 'helm)
+(package-install 'company)
+(package-install 'company-tern)
 
 ;; javascript-mode
 (setq js-indent-level 2)
@@ -60,3 +62,11 @@
 ;; helm
 (require 'helm-config)
 (helm-mode 1)
+
+;; company-mode
+(require 'company)
+(global-company-mode)
+
+;; company-tern
+(add-hook 'js2-mode-hook 'tern-mode)
+(add-to-list 'company-backends 'company-tern)

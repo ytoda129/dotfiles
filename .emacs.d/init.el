@@ -50,6 +50,7 @@
 (package-install 'helm)
 (package-install 'company)
 (package-install 'company-tern)
+(package-install 'helm-gtags)
 
 ;; javascript-mode
 (setq js-indent-level 2)
@@ -70,3 +71,14 @@
 ;; company-tern
 (add-hook 'js2-mode-hook 'tern-mode)
 (add-to-list 'company-backends 'company-tern)
+
+;; helm-gtags
+(require 'helm-gtags)
+(add-hook 'js2-mode-hook 'helm-gtags-mode)
+;; key bindings
+(add-hook 'helm-gtags-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "M-t") 'helm-gtags-find-tag)
+             (local-set-key (kbd "M-r") 'helm-gtags-find-rtag)
+             (local-set-key (kbd "M-s") 'helm-gtags-find-symbol)
+             (local-set-key (kbd "C-t") 'helm-gtags-pop-stack)))

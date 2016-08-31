@@ -25,11 +25,17 @@
 ;(setq frame-title-format
 ;      (format "%%f - Emacs@%s" (system-name)))
 
-;; 行番号表示
+;; 行、桁番号表示
 (global-linum-mode t)
+(line-number-mode 1)
+(column-number-mode 1)
+
+;; 括弧のハイライト
+(show-paren-mode t)
 
 ;; タブをスペースに
-(setq-default tab-width 4 indent-tabs-mode nil)
+(setq-default tab-width 4
+              indent-tabs-mode nil)
 
 ;; バックスペース
 (keyboard-translate ?\C-h ?\C-?)
@@ -75,6 +81,7 @@
 ;; helm-gtags
 (require 'helm-gtags)
 (add-hook 'js2-mode-hook 'helm-gtags-mode)
+(add-hook 'c-mode-hook 'helm-gtags-mode)
 ;; key bindings
 (add-hook 'helm-gtags-mode-hook
           '(lambda ()
@@ -82,3 +89,11 @@
              (local-set-key (kbd "M-r") 'helm-gtags-find-rtag)
              (local-set-key (kbd "M-s") 'helm-gtags-find-symbol)
              (local-set-key (kbd "C-t") 'helm-gtags-pop-stack)))
+
+;; cc-mode common setting
+(setq-default c-basic-offset 4)
+
+;; c-mode
+(add-hook 'c-mode-common-hook
+          '(lambda ()
+             (c-set-style "stroustrup")))

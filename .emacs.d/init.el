@@ -58,6 +58,7 @@
 (package-install 'company-tern)
 (package-install 'helm-gtags)
 (package-install 'markdown-mode)
+(package-install 'racket-mode)
 
 ;; javascript-mode
 (setq js-indent-level 2)

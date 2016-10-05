@@ -58,7 +58,7 @@
 (package-install 'company-tern)
 (package-install 'helm-gtags)
 (package-install 'markdown-mode)
-(package-install 'racket-mode)
+(package-install 'geiser)
 
 ;; javascript-mode
 (setq js-indent-level 2)
@@ -99,3 +99,7 @@
 (add-hook 'c-mode-common-hook
           '(lambda ()
              (c-set-style "stroustrup")))
+
+(setq geiser-racket-binary "/Applications/Racket v6.6/bin/racket")
+(setq geiser-active-implementations '(racket))
+(setq geiser-repl-read-only-prompt-p nil) ;; Racket REPL上で(read)の入力を取る際に必要

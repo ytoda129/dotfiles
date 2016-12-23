@@ -40,6 +40,11 @@
 ;; バックスペース
 (keyboard-translate ?\C-h ?\C-?)
 
+;; 1行ずつスクロールさせる
+(setq scroll-conservatively 35
+      scroll-margin 0
+      scroll-step 1)
+
 ;; proxy
 ;; private-conf/myproxy.elがあるときだけプロキシ設定をロード
 (load "myproxy" t)
@@ -95,6 +100,14 @@
 (setq-default c-basic-offset 4)
 
 ;; c-mode
-(add-hook 'c-mode-common-hook
+(add-hook 'c-mode-hook
           '(lambda ()
-             (c-set-style "stroustrup")))
+             (c-set-style "linux")
+             (setq tab-width 4)
+             (setq c-basic-offset 4)))
+
+;; c++-mode
+(add-hook 'c++-mode-hook
+          '(lambda ()
+             (c-set-style "ellemtel")
+             (c-set-offset 'innamespace 0)))

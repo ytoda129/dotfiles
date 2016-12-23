@@ -63,6 +63,7 @@
 (package-install 'company-tern)
 (package-install 'helm-gtags)
 (package-install 'markdown-mode)
+(package-install 'geiser)
 
 ;; javascript-mode
 (setq js-indent-level 2)
@@ -111,3 +112,7 @@
           '(lambda ()
              (c-set-style "ellemtel")
              (c-set-offset 'innamespace 0)))
+
+;(setq geiser-racket-binary "/Applications/Racket v6.6/bin/racket")
+;(setq geiser-active-implementations '(racket))
+;(setq geiser-repl-read-only-prompt-p nil) ;; Racket REPL上で(read)の入力を取る際に必要

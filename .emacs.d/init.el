@@ -61,9 +61,15 @@
 (package-install 'helm)
 (package-install 'company)
 (package-install 'company-tern)
+(package-install 'company-irony)
 (package-install 'helm-gtags)
 (package-install 'markdown-mode)
 (package-install 'geiser)
+(package-install 'flycheck)
+(package-install 'srefactor)
+(package-install 'function-args)
+(package-install 'yasnippet)
+(package-install 'irony)
 
 ;; javascript-mode
 (setq js-indent-level 2)
@@ -78,17 +84,24 @@
 (helm-mode 1)
 
 ;; company-mode
-(require 'company)
-(global-company-mode)
+(when (locate-library "company")
+  (global-company-mode 1)
+  (global-set-key (kbd "C-M-i") 'company-complete)
+  ;; (setq company-idle-delay nil) ; 自動補完をしない
+  (define-key company-active-map (kbd "C-n") 'company-select-next)
+  (define-key company-active-map (kbd "C-p") 'company-select-previous)
+  (define-key company-search-map (kbd "C-n") 'company-select-next)
+  (define-key company-search-map (kbd "C-p") 'company-select-previous)
+  (define-key company-active-map (kbd "<tab>") 'company-complete-selection))
 
 ;; company-tern
 (add-hook 'js2-mode-hook 'tern-mode)
 (add-to-list 'company-backends 'company-tern)
 
 ;; helm-gtags
-(require 'helm-gtags)
 (add-hook 'js2-mode-hook 'helm-gtags-mode)
-(add-hook 'c-mode-hook 'helm-gtags-mode)
+(add-hook 'c-mode-common-hook 'helm-gtags-mode)
+(setq helm-gtags-auto-update t)
 ;; key bindings
 (add-hook 'helm-gtags-mode-hook
           '(lambda ()
@@ -97,8 +110,11 @@
              (local-set-key (kbd "M-s") 'helm-gtags-find-symbol)
              (local-set-key (kbd "C-t") 'helm-gtags-pop-stack)))
 
+
+
 ;; cc-mode common setting
 (setq-default c-basic-offset 4)
+(add-hook 'c-mode-common-hook 'flycheck-mode)
 
 ;; c-mode
 (add-hook 'c-mode-hook
@@ -116,3 +132,32 @@
 ;(setq geiser-racket-binary "/Applications/Racket v6.6/bin/racket")
 ;(setq geiser-active-implementations '(racket))
 ;(setq geiser-repl-read-only-prompt-p nil) ;; Racket REPL上で(read)の入力を取る際に必要
+
+;; srefactor
+(require 'srefactor)
+(require 'srefactor-lisp)
+
+(semantic-mode 1)
+
+(define-key c-mode-map (kbd "M-RET") 'srefactor-refactor-at-point)
+(define-key c++-mode-map (kbd "M-RET") 'srefactor-refactor-at-point)
+(global-set-key (kbd "M-RET o") 'srefactor-lisp-one-line)
+(global-set-key (kbd "M-RET m") 'srefactor-lisp-format-sexp)
+(global-set-key (kbd "M-RET d") 'srefactor-lisp-format-defun)
+(global-set-key (kbd "M-RET b") 'srefactor-lisp-format-buffer)
+
+;; function-args
+(fa-config-default)
+
+;; yasnippet
+(with-eval-after-load "yasnippet"
+  (define-key yas-keymap (kbd "<tab>") nil)
+  (yas-global-mode 1))
+
+;; irony
+(with-eval-after-load "irony"
+  (custom-set-variables '(irony-additional-clang-options '("-std=c++11")))
+  (add-to-list 'company-backends 'company-irony)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+  (add-hook 'c-mode-common-hook 'irony-mode))
+

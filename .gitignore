@@ -5,3 +5,6 @@
 /.emacs.d/elpa/
 /.emacs.d/private-conf/
 /.emacs.d/session*
+/.emacs.d/irony/
+/.emacs.d/semanticdb/
+/.emacs.d/srecode-map.el

@@ -51,7 +51,7 @@ values."
      ;; version-control
      c-c++
      javascript
-     shell-script
+     shell-scripts
      semantic
      gtags
      )
@@ -305,7 +305,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; keybinding
-  (global-set-key (kbd "C-h") 'delete-backward-char)
+  (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

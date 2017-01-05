@@ -306,6 +306,22 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; keybinding
   (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+
+  ;; cc-mode common setting
+  (setq-default c-basic-offset 4)
+
+  ;; c-mode
+  (add-hook 'c-mode-hook
+            '(lambda ()
+               (c-set-style "linux")
+               (setq tab-width 4)
+               (setq c-basic-offset 4)))
+
+  ;; c++-mode
+  (add-hook 'c++-mode-hook
+            '(lambda ()
+               (c-set-style "ellemtel")
+               (c-set-offset 'innamespace 0)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

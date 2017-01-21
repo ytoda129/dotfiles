@@ -304,11 +304,15 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  ;; line number
+  (global-linum-mode t)
+
   ;; keybinding
   (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
-  ;; cc-mode common setting
-  (setq-default c-basic-offset 4)
+  (setq vc-follow-symlinks t)
+  (setq auto-revert-check-vc-info t)
 
   ;; c-mode
   (add-hook 'c-mode-hook
@@ -321,6 +325,7 @@ you should place your code here."
   (add-hook 'c++-mode-hook
             '(lambda ()
                (c-set-style "ellemtel")
+               (setq c-basic-offset 4)
                (c-set-offset 'innamespace 0)))
   )
 

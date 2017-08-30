@@ -8,3 +8,6 @@
 /.emacs.d/irony/
 /.emacs.d/semanticdb/
 /.emacs.d/srecode-map.el
+
+# mac
+.DS_Store

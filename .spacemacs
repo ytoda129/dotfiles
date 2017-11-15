@@ -312,6 +312,9 @@ you should place your code here."
   (setq vc-follow-symlinks t)
   (setq auto-revert-check-vc-info t)
 
+  ;; helm
+  (setq helm-buffer-max-length 50)
+
   ;; helm-gtags
   (custom-set-variables
    '(helm-gtags-suggested-key-mapping t))

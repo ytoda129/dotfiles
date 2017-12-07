@@ -56,6 +56,7 @@ values."
      gtags
      rust
      html
+     python
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -313,6 +314,9 @@ you should place your code here."
   (setq vc-follow-symlinks t)
   (setq auto-revert-check-vc-info t)
 
+  ;; helm
+  (setq helm-buffer-max-length 50)
+
   ;; helm-gtags
   (custom-set-variables
    '(helm-gtags-suggested-key-mapping t))
@@ -322,14 +326,20 @@ you should place your code here."
             '(lambda ()
                (c-set-style "linux")
                (setq tab-width 4)
-               (setq c-basic-offset 4)))
+               (setq c-basic-offset 4)
+               (c-set-offset 'inextern-lang 0)
+               (c-set-offset 'extern-lang-open 0)
+               (c-set-offset 'extern-lang-close 0)))
 
   ;; c++-mode
   (add-hook 'c++-mode-hook
             '(lambda ()
                (c-set-style "ellemtel")
                (setq c-basic-offset 4)
-               (c-set-offset 'innamespace 0)))
+               (c-set-offset 'innamespace 0)
+               (c-set-offset 'inextern-lang 0)
+               (c-set-offset 'extern-lang-open 0)
+               (c-set-offset 'extern-lang-close 0)))
 
   ;; js-mode/js2-mode
   (setq-default js2-basic-offset 2)
@@ -354,9 +364,10 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(helm-gtags-suggested-key-mapping t)
  '(package-selected-packages
    (quote
-    (web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data toml-mode racer cargo rust-mode winum fuzzy mmm-mode markdown-toc markdown-mode gh-md ws-butler window-numbering which-key web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org stickyfunc-enhance srefactor spacemacs-theme spaceline smeargle restart-emacs rainbow-delimiters quelpa popwin persp-mode pcre2el paradox orgit org-plus-contrib org-bullets open-junk-file neotree move-text magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint json-mode js2-refactor js-doc insert-shebang info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link ggtags flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump disaster define-word company-tern company-statistics company-shell company-c-headers column-enforce-mode coffee-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic packed avy iedit smartparens evil undo-tree company projectile helm helm-core yasnippet multiple-cursors skewer-mode js2-mode magit magit-popup git-commit with-editor async hydra dash powerline toml-mode racer cargo rust-mode winum fuzzy mmm-mode markdown-toc markdown-mode gh-md ws-butler window-numbering which-key web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org stickyfunc-enhance srefactor spacemacs-theme spaceline smeargle restart-emacs rainbow-delimiters quelpa popwin persp-mode pcre2el paradox orgit org-plus-contrib org-bullets open-junk-file neotree move-text magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint json-mode js2-refactor js-doc insert-shebang info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link ggtags flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump disaster define-word company-tern company-statistics company-shell company-c-headers column-enforce-mode coffee-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

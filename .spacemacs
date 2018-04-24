@@ -312,6 +312,9 @@ you should place your code here."
   ;; keybinding
   (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
+  (when (eq system-type 'darwin)
+    (setq ns-command-modifier (quote meta)))
+
   (setq vc-follow-symlinks t)
   (setq auto-revert-check-vc-info t)
 

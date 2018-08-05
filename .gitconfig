@@ -1,0 +1,19 @@
+[include]
+	path = ~/.gitconfig.local
+
+[core]
+	pager = less -R -F -X
+
+[alias]
+	prune = fetch --prune
+	undo = reset --soft HEAD^
+	glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+
+[merge]
+	ff = false
+
+[push]
+	default = simple
+
+[pull]
+	ff = only

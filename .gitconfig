@@ -11,6 +11,9 @@
 	ci = commit
 	br = branch
 	co = checkout
+	f = flow
+	fi = flow init
+	ff = flow feature
 [merge]
 	ff = false
 [push]

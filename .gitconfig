@@ -4,16 +4,16 @@
 	editor = vim -c \"set fenc=utf-8\"
 	pager = less -R -F -X
 [alias]
-	prune = fetch --prune
+	fprune = fetch --prune
 	undo = reset --soft HEAD^
 	glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 	st = status
 	ci = commit
 	br = branch
 	co = checkout
-	f = flow
-	fi = flow init
-	ff = flow feature
+	fl = flow
+	fli = flow init
+	flf = flow feature
 [merge]
 	ff = false
 [push]

@@ -11,6 +11,7 @@
 	ci = commit
 	br = branch
 	co = checkout
+	sm = submodule
 	fl = flow
 	fli = flow init
 	flf = flow feature

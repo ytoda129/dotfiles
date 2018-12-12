@@ -334,8 +334,8 @@ you should place your code here."
   (add-hook 'c-mode-hook
             '(lambda ()
                (c-set-style "linux")
-               (setq tab-width 4)
-               (setq c-basic-offset 4)
+               (setq tab-width 2)
+               (setq c-basic-offset 2)
                (c-set-offset 'inextern-lang 0)
                (c-set-offset 'extern-lang-open 0)
                (c-set-offset 'extern-lang-close 0)))
@@ -344,7 +344,7 @@ you should place your code here."
   (add-hook 'c++-mode-hook
             '(lambda ()
                (c-set-style "ellemtel")
-               (setq c-basic-offset 4)
+               (setq c-basic-offset 2)
                (c-set-offset 'innamespace 0)
                (c-set-offset 'inextern-lang 0)
                (c-set-offset 'extern-lang-open 0)

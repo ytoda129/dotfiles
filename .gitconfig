@@ -21,3 +21,9 @@
 	default = simple
 [pull]
 	ff = only
+[url "git@bitbucket.org:"]
+	InsteadOf = https://bitbucket.org/
+	InsteadOf = https://ytoda129@bitbucket.org/
+[url "git@github.com:"]
+	InsteadOf = https://github.com/
+	InsteadOf = https://ytoda129@github.com/

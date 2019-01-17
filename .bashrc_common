@@ -36,6 +36,9 @@ fi
 # sudo
 alias sudo="sudo -E"
 
+# less
+export LESS='-iMR'
+
 # history
 export HISTCONTROL=ignoreboth
 export HISTIGNORE=ls*:ll*:la*:history*

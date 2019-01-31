@@ -29,3 +29,8 @@
 	InsteadOf = https://ytoda129@github.com/
 [url "git@gitlab.com:"]
 	InsteadOf = https://gitlab.com/
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge --skip -- %f
+	process = git-lfs filter-process --skip
+	required = true

@@ -1,21 +1,21 @@
 [global_config]
   window_state = maximise
 [keybindings]
-[profiles]
-  [[default]]
-    use_system_font = False
-    background_darkness = 0.63
-    scrollback_lines = 50000
-    background_type = transparent
-    background_image = None
-    show_titlebar = False
-    font = Ubuntu Mono 11
 [layouts]
   [[default]]
     [[[child1]]]
-      type = Terminal
       parent = window0
+      type = Terminal
     [[[window0]]]
-      type = Window
       parent = ""
+      type = Window
 [plugins]
+[profiles]
+  [[default]]
+    background_darkness = 0.75
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    font = Ubuntu Mono 12
+    scrollback_lines = 50000
+    show_titlebar = False
+    use_system_font = False

@@ -49,15 +49,14 @@ values."
      ;; spell-checking
      syntax-checking
      ;; version-control
-     c-c++
+     (c-c++ :variables c-c++-backend 'lsp-cquery)
      javascript
      shell-scripts
      semantic
-     gtags
      rust
      html
      python
-     ycmd
+     cmake
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -366,9 +365,8 @@ you should place your code here."
   (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@interface" . objc-mode))
   (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@protocol" . objc-mode))
 
-  ;; ycmd
-  (setq ycmd-server-command (list "python" (file-truename "~/ycmd/ycmd")))
-  (setq ycmd-force-semantic-completion t)
+  ;; lsp
+  (setq-default lsp-ui-sideline-enable nil)
 
   ;; mozc
   (when (equal system-type 'gnu/linux)
@@ -387,10 +385,31 @@ you should place your code here."
  '(helm-gtags-suggested-key-mapping t)
  '(package-selected-packages
    (quote
-    (helm-ghq org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mozc-popup mozc-im mozc htmlize gnuplot flycheck-ycmd flycheck-rust flycheck-pos-tip flycheck pos-tip bind-key dash-functional tern goto-chg ghub f simple-httpd s company-ycmd ycmd request-deferred let-alist deferred web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic packed avy iedit smartparens evil undo-tree company projectile helm helm-core yasnippet multiple-cursors skewer-mode js2-mode magit magit-popup git-commit with-editor async hydra dash powerline toml-mode racer cargo rust-mode winum fuzzy mmm-mode markdown-toc markdown-mode gh-md ws-butler window-numbering which-key web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org stickyfunc-enhance srefactor spacemacs-theme spaceline smeargle restart-emacs rainbow-delimiters quelpa popwin persp-mode pcre2el paradox orgit org-plus-contrib org-bullets open-junk-file neotree move-text magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint json-mode js2-refactor js-doc insert-shebang info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link ggtags flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump disaster define-word company-tern company-statistics company-shell company-c-headers column-enforce-mode coffee-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (lsp-ui company-lsp lsp-mode ht spinner json-snatcher json-reformat parent-mode gitignore-mode flx highlight anzu diminish pkg-info request epl bind-map auto-complete popup helm-ghq org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mozc-popup mozc-im mozc htmlize gnuplot flycheck-ycmd flycheck-rust flycheck-pos-tip flycheck pos-tip bind-key dash-functional tern goto-chg ghub f simple-httpd s company-ycmd ycmd request-deferred let-alist deferred web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic packed avy iedit smartparens evil undo-tree company projectile helm helm-core yasnippet multiple-cursors skewer-mode js2-mode magit magit-popup git-commit with-editor async hydra dash powerline toml-mode racer cargo rust-mode winum fuzzy mmm-mode markdown-toc markdown-mode gh-md ws-butler window-numbering which-key web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org stickyfunc-enhance srefactor spacemacs-theme spaceline smeargle restart-emacs rainbow-delimiters quelpa popwin persp-mode pcre2el paradox orgit org-plus-contrib org-bullets open-junk-file neotree move-text magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint json-mode js2-refactor js-doc insert-shebang info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link ggtags flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump disaster define-word company-tern company-statistics company-shell company-c-headers column-enforce-mode coffee-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(helm-gtags-suggested-key-mapping t)
+ '(package-selected-packages
+   (quote
+    (helm-ctest cmake-ide levenshtein lsp-ui company-lsp lsp-mode ht spinner json-snatcher json-reformat parent-mode gitignore-mode flx highlight anzu diminish pkg-info request epl bind-map auto-complete popup helm-ghq org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mozc-popup mozc-im mozc htmlize gnuplot flycheck-ycmd flycheck-rust flycheck-pos-tip flycheck pos-tip bind-key dash-functional tern goto-chg ghub f simple-httpd s company-ycmd ycmd request-deferred let-alist deferred web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic packed avy iedit smartparens evil undo-tree company projectile helm helm-core yasnippet multiple-cursors skewer-mode js2-mode magit magit-popup git-commit with-editor async hydra dash powerline toml-mode racer cargo rust-mode winum fuzzy mmm-mode markdown-toc markdown-mode gh-md ws-butler window-numbering which-key web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org stickyfunc-enhance srefactor spacemacs-theme spaceline smeargle restart-emacs rainbow-delimiters quelpa popwin persp-mode pcre2el paradox orgit org-plus-contrib org-bullets open-junk-file neotree move-text magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint json-mode js2-refactor js-doc insert-shebang info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link ggtags flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump disaster define-word company-tern company-statistics company-shell company-c-headers column-enforce-mode coffee-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)

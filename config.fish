@@ -15,3 +15,6 @@ if test (which colordiff)
 else
   alias diff "diff -u"
 end
+
+# less
+set -x LESS -iMR

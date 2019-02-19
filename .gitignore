@@ -9,5 +9,8 @@
 /.emacs.d/semanticdb/
 /.emacs.d/srecode-map.el
 
+# vim
+.netrwhist
+
 # mac
 .DS_Store

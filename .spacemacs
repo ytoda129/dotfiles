@@ -49,7 +49,9 @@ values."
      ;; spell-checking
      syntax-checking
      ;; version-control
-     (c-c++ :variables c-c++-backend 'lsp-ccls)
+     (c-c++ :variables
+            c-c++-backend 'lsp-ccls
+            c-c++-enable-clang-format-on-save t)
      javascript
      shell-scripts
      semantic

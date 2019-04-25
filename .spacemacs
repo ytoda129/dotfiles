@@ -352,6 +352,7 @@ you should place your code here."
                (c-set-offset 'inextern-lang 0)
                (c-set-offset 'extern-lang-open 0)
                (c-set-offset 'extern-lang-close 0)))
+  (setq clang-format-executable "/usr/bin/clang-format")
 
   ;; js-mode/js2-mode
   (setq-default js2-basic-offset 2)
@@ -377,6 +378,9 @@ you should place your code here."
     (setq default-input-method "japanese-mozc")
     (setq mozc-candidate-style 'echo-area)
     (global-set-key (kbd "<zenkaku-hankaku>") 'toggle-input-method))
+
+  ;; verilog-mode
+  (setq verilog-auto-newline nil)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

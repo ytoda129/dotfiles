@@ -328,6 +328,7 @@ you should place your code here."
 
   ;; helm
   (setq helm-buffer-max-length 50)
+  (setq helm-inherit-input-method nil)
 
   ;; helm-gtags
   (custom-set-variables
@@ -375,8 +376,10 @@ you should place your code here."
 
   ;; mozc
   (when (equal system-type 'gnu/linux)
-    (setq default-input-method "japanese-mozc")
-    (setq mozc-candidate-style 'echo-area)
+    (require 'mozc-popup)
+    (require 'mozc-im)
+    (setq default-input-method "japanese-mozc-im")
+    (setq mozc-candidate-style 'popup)
     (global-set-key (kbd "<zenkaku-hankaku>") 'toggle-input-method))
 
   ;; shell-script

@@ -377,6 +377,10 @@ you should place your code here."
     (setq default-input-method "japanese-mozc")
     (setq mozc-candidate-style 'echo-area)
     (global-set-key (kbd "<zenkaku-hankaku>") 'toggle-input-method))
+
+  ;; shell-script
+  (setq sh-basic-offset 2
+        sh-indentation 2)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

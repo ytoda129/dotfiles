@@ -353,7 +353,8 @@ you should place your code here."
                (c-set-offset 'inextern-lang 0)
                (c-set-offset 'extern-lang-open 0)
                (c-set-offset 'extern-lang-close 0)))
-  (setq clang-format-executable "/usr/bin/clang-format")
+  (when (eq system-type 'gnu/linux)
+    (setq clang-format-executable "/usr/bin/clang-format"))
 
   ;; js-mode/js2-mode
   (setq-default js2-basic-offset 2)

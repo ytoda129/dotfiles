@@ -5,12 +5,12 @@ set -x NO_AT_BRIDGE 1
 set -x EDITOR vim
 
 # direnv
-if test (which direnv)
+if type direnv >/dev/null 2>&1
     eval (direnv hook fish)
 end
 
 # colordiff alias
-if test (which colordiff)
+if type colordiff >/dev/null 2>&1
     alias diff "colordiff -u"
 else
     alias diff "diff -u"
@@ -18,6 +18,11 @@ end
 
 # less
 set -x LESS -iMR
+
+# tmux
+if type tmux >/dev/null 2>&1 && test $SHLVL = 1
+    tmux
+end
 
 # gtkwave
 if test (uname) = "Darwin"

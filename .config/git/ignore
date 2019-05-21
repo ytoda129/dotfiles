@@ -1,2 +1,5 @@
 .envrc
 .ccls-cache/
+.ccls
+.direnv/
+.docker-sync/

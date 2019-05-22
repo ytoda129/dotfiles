@@ -1,5 +1,5 @@
-[include]
-	path = ~/.gitconfig.local
+[user]
+	useConfigOnly = true
 [core]
 	editor = vim -c \"set fenc=utf-8\"
 	pager = less -R -F -X

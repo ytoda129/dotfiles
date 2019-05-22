@@ -21,7 +21,13 @@ set -x LESS -iMR
 
 # tmux
 if type tmux >/dev/null 2>&1 && test $SHLVL = 1
-    tmux
+    if test -z $TMUX
+        if tmux has-session >/dev/null 2>&1
+            tmux attach
+        else
+            tmux
+        end
+    end
 end
 
 # gtkwave

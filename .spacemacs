@@ -325,6 +325,7 @@ you should place your code here."
 
   (setq vc-follow-symlinks t)
   (setq auto-revert-check-vc-info t)
+  (setq-default sp-escape-quotes-after-insert nil)
 
   ;; helm
   (setq helm-buffer-max-length 50)

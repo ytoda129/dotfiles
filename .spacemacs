@@ -60,6 +60,8 @@ values."
      python
      cmake
      debug
+     (multiple-cursors :variables
+                       multiple-cursors-backend 'mc)
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -390,6 +392,12 @@ you should place your code here."
 
   ;; verilog-mode
   (setq verilog-auto-newline nil)
+
+  ;; multiple cursors
+  (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

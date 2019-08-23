@@ -1,4 +1,5 @@
 set number
+set hlsearch
 
 set t_Co=256
 

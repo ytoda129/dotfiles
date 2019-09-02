@@ -44,3 +44,14 @@ export HISTCONTROL=ignoreboth
 export HISTTIMEFORMAT='%Y%m%d %T '
 export HISTSIZE=10000
 export PROMPT_COMMAND='history -a'
+
+# tmux
+if type tmux >/dev/null 2>&1 && [ $SHLVL = 1 ]; then
+  if [ -z $TMUX ]; then
+    if $(tmux has-session 2> /dev/null); then
+      tmux attach
+    else
+      tmux
+    fi
+  fi
+fi

@@ -1,5 +1,8 @@
 set number
 
+set laststatus=2
+set statusline+=%<%F
+
 set t_Co=256
 
 set background=dark

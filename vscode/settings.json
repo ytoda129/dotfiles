@@ -1,0 +1,9 @@
+{
+    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.default.cStandard": "c11",
+    "window.zoomLevel": 0,
+    "editor.fontFamily": "Source Han Code JP, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 14,
+    "editor.minimap.enabled": false,
+    "C_Cpp.clang_format_style": "Google"
+}

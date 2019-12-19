@@ -3,3 +3,4 @@
 .ccls
 .direnv/
 .docker-sync/
+.dir-locals.el

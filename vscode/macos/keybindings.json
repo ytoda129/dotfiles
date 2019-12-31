@@ -15,38 +15,38 @@
         "command": "emacs-tab.reindentCurrentLine"
     },
     {
-        "key": "cmd+v",
-        "command": "emacs-mcx.scrollDownCommand",
-        "when": "editorTextFocus && !suggestWidgetVisible"
+        "key": "shift+alt+,",
+        "command": "cursorTop",
+        "when": "textInputFocus"
     },
     {
-        "key": "alt+v",
-        "command": "-emacs-mcx.scrollDownCommand",
-        "when": "editorTextFocus && !suggestWidgetVisible"
+        "key": "cmd+up",
+        "command": "-cursorTop",
+        "when": "textInputFocus"
     },
     {
-        "key": "cmd+w",
-        "command": "emacs-mcx.copyRegion",
-        "when": "editorTextFocus"
+        "key": "shift+alt+.",
+        "command": "cursorBottom",
+        "when": "textInputFocus"
     },
     {
-        "key": "alt+w",
-        "command": "-emacs-mcx.copyRegion",
-        "when": "editorTextFocus"
+        "key": "cmd+down",
+        "command": "-cursorBottom",
+        "when": "textInputFocus"
     },
     {
-        "key": "cmd+d",
-        "command": "emacs-mcx.killWord",
-        "when": "editorTextFocus && !editorReadonly"
-    },
-    {
-        "key": "alt+d",
-        "command": "-emacs-mcx.killWord",
-        "when": "editorTextFocus && !editorReadonly"
-    },
-    {
-        "key": "cmd+[Semicolon]",
+        "key": "alt+[Semicolon]",
         "command": "editor.action.commentLine",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "cmd+/",
+        "command": "-editor.action.commentLine",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "cmd+/",
+        "command": "-editor.action.commentLine",
         "when": "editorTextFocus && !editorReadonly"
     },
     {

@@ -56,6 +56,11 @@ values."
      shell-scripts
      semantic
      rust
+     (go :variables
+         go-backend 'lsp
+         go-tab-width 4
+         go-format-before-save t)
+     lsp
      html
      python
      cmake

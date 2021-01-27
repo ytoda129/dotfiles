@@ -34,3 +34,8 @@ end
 if test (uname) = "Darwin"
     alias gtkwave "open -a gtkwave"
 end
+
+# rbenv
+if type rbenv >/dev/null 2>&1
+    status --is-interactive; and source (rbenv init -|psub)
+end

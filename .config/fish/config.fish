@@ -1,3 +1,6 @@
+# search match color
+set fish_color_search_match --background=blue
+
 # dbus error
 set -x NO_AT_BRIDGE 1
 

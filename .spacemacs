@@ -51,6 +51,7 @@ values."
      ;; version-control
      (c-c++ :variables
             c-c++-backend 'lsp-ccls
+            c-c++-enable-gootle-style t
             c-c++-enable-clang-format-on-save t)
      javascript
      shell-scripts
@@ -345,7 +346,6 @@ you should place your code here."
   ;; c-mode
   (add-hook 'c-mode-hook
             '(lambda ()
-               (c-set-style "linux")
                (setq tab-width 2)
                (setq c-basic-offset 2)
                (c-set-offset 'inextern-lang 0)
@@ -355,7 +355,6 @@ you should place your code here."
   ;; c++-mode
   (add-hook 'c++-mode-hook
             '(lambda ()
-               (c-set-style "ellemtel")
                (setq c-basic-offset 2)
                (c-set-offset 'innamespace 0)
                (c-set-offset 'inextern-lang 0)

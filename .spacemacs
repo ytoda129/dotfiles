@@ -383,12 +383,20 @@ you should place your code here."
   ;; (setq-default lsp-print-io t)
 
   ;; mozc
+  (defun off-input-method ()
+    (interactive)
+    (deactivate-input-method))
+  (defun on-input-method ()
+    (interactive)
+    (activate-input-method default-input-method))
   (when (equal system-type 'gnu/linux)
     (require 'mozc-popup)
     (require 'mozc-im)
     (setq default-input-method "japanese-mozc-im")
     (setq mozc-candidate-style 'popup)
-    (global-set-key (kbd "<zenkaku-hankaku>") 'toggle-input-method))
+    (global-set-key (kbd "<zenkaku-hankaku>") 'toggle-input-method)
+    (global-set-key (kbd "<muhenkan>") 'off-input-method)
+    (global-set-key (kbd "<henkan>") 'on-input-method))
 
   ;; shell-script
   (setq sh-basic-offset 2
@@ -396,6 +404,11 @@ you should place your code here."
 
   ;; verilog-mode
   (setq verilog-auto-newline nil)
+
+  ;; rst-mode
+  (add-hook 'rst-mode-hook
+            '(lambda ()
+               (electric-indent-local-mode -1)))
 
   ;; multiple cursors
   (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)

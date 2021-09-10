@@ -381,6 +381,7 @@ you should place your code here."
 
   ;; lsp
   (setq-default lsp-ui-sideline-enable nil)
+  (setq lsp-prefer-capf t)
   ;; (setq-default lsp-print-io t)
 
   ;; mozc
@@ -408,6 +409,7 @@ you should place your code here."
     :program "verible-verilog-format"
     :args '("-"))
   (add-hook 'verilog-mode-hook #'verilog-format-on-save-mode)
+  (add-hook 'verilog-mode-hook 'company-mode)
   (setq verilog-indent-level 2
         verilog-indent-level-module 2
         verilog-indent-level-declaration 2

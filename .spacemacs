@@ -79,6 +79,7 @@ values."
      mozc-im
      mozc-popup
      helm-ghq
+     reformatter
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -403,7 +404,21 @@ you should place your code here."
         sh-indentation 2)
 
   ;; verilog-mode
-  (setq verilog-auto-newline nil)
+  (reformatter-define verilog-format
+    :program "verible-verilog-format"
+    :args '("-"))
+  (add-hook 'verilog-mode-hook #'verilog-format-on-save-mode)
+  (setq verilog-indent-level 2
+        verilog-indent-level-module 2
+        verilog-indent-level-declaration 2
+        verilog-indent-level-behavioral 2
+        verilog-indent-level-directive 0
+        verilog-case-indent 2
+        verilog-auto-newline nil
+        verilog-auto-indent-on-newline t
+        verilog-tab-always-indent t
+        verilog-auto-endcomments nil
+        verilog-auto-lineup nil)
 
   ;; rst-mode
   (add-hook 'rst-mode-hook

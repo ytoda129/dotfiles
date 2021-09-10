@@ -42,3 +42,8 @@ end
 if type rbenv >/dev/null 2>&1
     status --is-interactive; and source (rbenv init -|psub)
 end
+
+# anyenv
+if type anyenv >/dev/null 2>&1
+    status --is-interactive; and source (anyenv init -|psub)
+end

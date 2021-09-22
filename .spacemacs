@@ -409,7 +409,7 @@ you should place your code here."
     :program "verible-verilog-format"
     :args '("-"))
   (add-hook 'verilog-mode-hook #'verilog-format-on-save-mode)
-  (add-hook 'verilog-mode-hook 'company-mode)
+  (add-hook 'verilog-mode-hook 'auto-complete-mode)
   (setq verilog-indent-level 2
         verilog-indent-level-module 2
         verilog-indent-level-declaration 2
@@ -421,6 +421,9 @@ you should place your code here."
         verilog-tab-always-indent t
         verilog-auto-endcomments nil
         verilog-auto-lineup nil)
+
+  ;; auto-complete-mode
+  (setq ac-use-menu-map t)
 
   ;; rst-mode
   (add-hook 'rst-mode-hook

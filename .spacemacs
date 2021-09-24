@@ -66,6 +66,7 @@ values."
      python
      cmake
      debug
+     gtags
      (multiple-cursors :variables
                        multiple-cursors-backend 'mc)
      )
@@ -409,7 +410,14 @@ you should place your code here."
     :program "verible-verilog-format"
     :args '("-"))
   (add-hook 'verilog-mode-hook #'verilog-format-on-save-mode)
-  (add-hook 'verilog-mode-hook 'auto-complete-mode)
+  (add-hook 'verilog-mode-hook
+            '(lambda ()
+               (auto-complete-mode)
+               (setq ac-sources (cl-union '(ac-source-gtags)
+                                          ac-sources))))
+  (add-hook 'verilog-mode-hook
+            '(lambda ()
+               (ggtags-mode 1)))
   (setq verilog-indent-level 2
         verilog-indent-level-module 2
         verilog-indent-level-declaration 2

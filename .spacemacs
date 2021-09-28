@@ -66,7 +66,7 @@ values."
      python
      cmake
      debug
-     gtags
+     (gtags :variables gtags-enable-by-default nil)
      (multiple-cursors :variables
                        multiple-cursors-backend 'mc)
      )

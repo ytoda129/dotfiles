@@ -1,5 +1,6 @@
 set number
 set hlsearch
+set tw=0
 
 set laststatus=2
 set statusline+=%<%F

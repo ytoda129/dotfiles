@@ -616,16 +616,18 @@ before packages are loaded."
   ;; c-mode
   (add-hook 'c-mode-hook
             '(lambda ()
-               (setq tab-width 2)
-               (setq c-basic-offset 2)
+               ;(setq tab-width 8)
+               ;(setq c-basic-offset 2)
                (c-set-offset 'inextern-lang 0)
                (c-set-offset 'extern-lang-open 0)
-               (c-set-offset 'extern-lang-close 0)))
+               (c-set-offset 'extern-lang-close 0)
+               (setq comment-start "// "
+                     comment-end "")))
 
   ;; c++-mode
   (add-hook 'c++-mode-hook
             '(lambda ()
-               (setq c-basic-offset 2)
+               ;(setq c-basic-offset 2)
                (c-set-offset 'innamespace 0)
                (c-set-offset 'inextern-lang 0)
                (c-set-offset 'extern-lang-open 0)
@@ -686,7 +688,7 @@ before packages are loaded."
   (add-hook 'verilog-mode-hook
             '(lambda ()
                (ggtags-mode 1)))
-  (add-hook 'verilog-mode-hook 'lsp)
+  ;(add-hook 'verilog-mode-hook 'lsp)
   (setq verilog-indent-level 2
         verilog-indent-level-module 2
         verilog-indent-level-declaration 2
@@ -712,6 +714,9 @@ before packages are loaded."
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+  ;; safe-local-variable
+  (put 'c-c++-enable-clang-format-on-save 'safe-local-variable #'booleanp)
 )
 
 

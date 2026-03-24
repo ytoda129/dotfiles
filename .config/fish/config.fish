@@ -7,6 +7,12 @@ set -x NO_AT_BRIDGE 1
 # editor
 set -x EDITOR vim
 
+# PATH
+fish_add_path $HOME/go/bin /usr/local/go/bin
+fish_add_path /usr/local/verible/bin
+fish_add_path $HOME/.local/bin
+fish_add_path /usr/local/wavedrom
+
 # direnv
 if type direnv >/dev/null 2>&1
     eval (direnv hook fish)

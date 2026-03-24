@@ -5,3 +5,5 @@
 .direnv/
 .docker-sync/
 .dir-locals.el
+verible.filelist
+gtags.conf

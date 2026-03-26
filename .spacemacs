@@ -489,7 +489,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
    ;; (default '("rg" "ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
+   dotspacemacs-search-tools '("rg" "ag" "ack" "grep")
 
    ;; Format specification for setting the frame title.
    ;; %a - the `abbreviated-file-name', or `buffer-name'
@@ -595,6 +595,11 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
+  (with-eval-after-load 'lsp-mode
+    (setq lsp-clients-clangd-args
+          '("--query-driver=/usr/bin/c++"
+            "--header-insertion-decorators=0")))
+
     ;; keybinding
   (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
@@ -680,15 +685,22 @@ before packages are loaded."
     :program "verible-verilog-format"
     :args '("-"))
   (add-hook 'verilog-mode-hook #'verilog-format-on-save-mode)
-  (add-hook 'verilog-mode-hook
-            '(lambda ()
-               (auto-complete-mode)
-               (setq ac-sources (cl-union '(ac-source-gtags)
-                                          ac-sources))))
-  (add-hook 'verilog-mode-hook
-            '(lambda ()
-               (ggtags-mode 1)))
-  ;(add-hook 'verilog-mode-hook 'lsp)
+  ;;(add-hook 'verilog-mode-hook
+  ;;          '(lambda ()
+  ;;             (auto-complete-mode)
+  ;;             (setq ac-sources (cl-union '(ac-source-gtags)
+  ;;                                        ac-sources))))
+  ;;(add-hook 'verilog-mode-hook
+  ;;          '(lambda ()
+  ;;             (ggtags-mode 1)))
+  ;;(with-eval-after-load 'verilog-mode
+  ;;  (add-hook 'verilog-mode-hook
+  ;;            (lambda ()
+  ;;              (setq-local font-lock-mode t)
+  ;;              (font-lock-set-defaults)
+  ;;              (font-lock-fontify-buffer))))
+  (add-hook 'verilog-mode-hook #'company-mode)
+  (add-hook 'verilog-mode-hook #'lsp-deferred)
   (setq verilog-indent-level 2
         verilog-indent-level-module 2
         verilog-indent-level-declaration 2
@@ -702,7 +714,7 @@ before packages are loaded."
         verilog-auto-lineup nil)
 
   ;; auto-complete-mode
-  (setq ac-use-menu-map t)
+  ;;(setq ac-use-menu-map t)
 
   ;; rst-mode
   (add-hook 'rst-mode-hook
